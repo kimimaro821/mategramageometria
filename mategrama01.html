@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla de Crucigrama</title>
+    <style>
+        .table-container {
+            width: 100%;
+            max-width: 100vw;
+            overflow-x: auto;
+        }
+        table { 
+
+            border-collapse: collapse; 
+            width: 100%; /* La tabla ocupa todo el ancho de la ventana */
+             
+        }
+        td { 
+            width: calc(100vw / 50); /* Cada celda ocupa 1/45 del ancho de la ventana */
+            height: calc(100vw / 50); /* Mantiene la relación de aspecto cuadrada */
+            text-align: center; 
+          /*  border: 1px solid black; */
+         /*   font-size: 10px; */
+            position: relative;
+            padding: 0;
+            margin: 0;
+        }
+        input {
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            font-size: calc(100vw / 55); /* Ajusta el tamaño del texto sin afectar los bordes */
+            text-transform: uppercase;
+            outline: none;
+            background: transparent;
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: black;
+        }
+        .hidden-cell {
+            border: 1px solid white; 
+            /*border: none !important;*/
+            background: white !important;
+        }
+        .letra-cell {
+            border: 1px solid black; 
+            background: white !important;
+        }
+
+
+
+        .combined-blue {
+            background-color: skyblue !important;
+            border: 1px solid white; 
+         /*   border: none !important;*/
+        }
+        .combined-yellow {
+            background-color: yellow !important;
+            border: 1px solid white; 
+            /*border: none !important;*/
+        }
+        .incorrect {
+            background-color: red !important;
+            color: white !important;
+        }
+        .correct {
+            background-color: green !important;
+            color: white !important;
+        }
+    </style>
+</head>
+<body>
+    <h2>Tabla del Crucigrama</h2>
+    <div id="mensaje">Recuerda que NO debes utilizar tildes y TAMPOCO números</div>
+    <button onclick="calificar()">CALIFICAR</button>
+    <div class="table-container">
+        <table>
+            <tbody>
+                <script>
+                    document.addEventListener("DOMContentLoaded", function() {
+                        let table = document.querySelector("table tbody");
+                        for (let i = 0; i < 26; i++) {
+                            let row = document.createElement("tr");
+                            for (let j = 0; j < 45; j++) {
+                                let cell = document.createElement("td");
+                                
+                            // Celdas editables con identificador único 
+                                if ((i === 1 && j === 18) || (i === 2 && j === 18)
+                                || (i === 2 && j === 17) || (i === 2 && j === 13)
+                                || (i === 2 && j === 19) || (i === 2 && j === 20)
+                                || (i === 2 && j === 21) || (i === 2 && j === 22)
+                                || (i === 2 && j === 23) || (i === 2 && j === 24)
+                                || (i === 3 && j === 7) || (i === 3 && j === 8)
+                                || (i === 3 && j === 9) || (i === 3 && j === 10)
+                                || (i === 3 && j === 11) || (i === 3 && j === 13)
+                                || (i === 3 && j === 35) || (i === 3 && j === 41)
+                                || (i === 3 && j === 44) || (i === 4 && j === 7)
+                                || (i === 4 && j === 10) || (i === 4 && j === 13)
+                                || (i === 4 && j === 35) || (i === 4 && j === 41)
+                                || (i === 4 && j === 44) || (i === 5 && j === 7)
+                                || (i === 5 && j === 10) || (i === 5 && j === 11)
+                                || (i === 5 && j === 12) || (i === 5 && j === 13)
+                                || (i === 6 && j === 10) || (i === 7 && j === 10)
+                                || (i === 8 && j === 10) || (i === 9 && j === 10)
+                                || (i === 10 && j === 10) || (i === 7 && j === 5)
+                                || (i === 7 && j === 6) || (i === 7 && j === 7)
+                                || (i === 7 && j === 8) || (i === 7 && j === 9)
+                                || (i === 7 && j === 11) || (i === 7 && j === 12)
+                                || (i === 7 && j === 13) || (i === 7 && j === 28)
+                                || (i === 7 && j === 29) || (i === 7 && j === 30)
+                                || (i === 7 && j === 31) || (i === 7 && j === 32)
+                                || (i === 7 && j === 33) || (i === 7 && j === 34)
+                                || (i === 7 && j === 35) || (i === 5 && j === 34)
+                                || (i === 5 && j === 35) || (i === 6 && j === 35)
+                                || (i === 6 && j === 33) || (i === 6 && j === 34)
+                                || (i === 8 && j === 15) || (i === 9 && j === 15)
+                                || (i === 10 && j === 15) || (i === 11 && j === 15)
+                                || (i === 12 && j === 15) || (i === 12 && j === 16)
+                                || (i === 12 && j === 17) || (i === 12 && j === 18)
+                                || (i === 12 && j === 19) || (i === 12 && j === 28)
+                                || (i === 8 && j === 32) || (i === 8 && j === 33)
+                                || (i === 8 && j === 34) || (i === 8 && j === 35)
+                                || (i === 8 && j === 36) || (i === 8 && j === 37)
+                                || (i === 8 && j === 38) || (i === 8 && j === 39)
+                                || (i === 8 && j === 40) || (i === 8 && j === 41)
+                                || (i === 8 && j === 42) || (i === 8 && j === 43)
+                                || (i === 8 && j === 44) || (i === 5 && j === 44)
+                                || (i === 8 && j === 28) || (i === 9 && j === 28)
+                                || (i === 10 && j === 28) || (i === 11 && j === 28)
+                                || (i === 13 && j === 28) || (i === 14 && j === 28)
+                                || (i === 15 && j === 28) || (i === 16 && j === 28)
+                                || (i === 17 && j === 28) || (i === 18 && j === 28)
+                                || (i === 19 && j === 28) || (i === 13 && j === 26)
+                                || (i === 5 && j === 41) || (i === 6 && j === 41)
+                                || (i === 7 && j === 41) || (i === 9 && j === 41)
+                                || (i === 10 && j === 41) || (i === 11 && j === 41)
+                                || (i === 12 && j === 41) || (i === 6 && j === 44)
+                                || (i === 5 && j === 42) || (i === 6 && j === 42)
+                                || (i === 7 && j === 42) || (i === 9 && j === 42)
+                                || (i === 10 && j === 42) || (i === 11 && j === 42)
+                                || (i === 12 && j === 42) || (i === 13 && j === 42)
+                                || (i === 14 && j === 42) || (i === 7 && j === 44)
+                                || (i === 25 && j === 11) || (i === 25 && j === 12)
+                                || (i === 25 && j === 13) || (i === 25 && j === 14)
+                                || (i === 25 && j === 15) || (i === 25 && j === 16)
+                                || (i === 25 && j === 17) || (i === 25 && j === 18)
+                                || (i === 25 && j === 19) || (i === 25 && j === 20)
+                                || (i === 25 && j === 21) || (i === 25 && j === 22)
+                                || (i === 25 && j === 23) || (i === 25 && j === 24)
+                                || (i === 25 && j === 25) || (i === 13 && j === 27)
+                                || (i === 11 && j === 0) || (i === 13 && j === 0)
+                                || (i === 14 && j === 0) || (i === 15 && j === 0)
+                                || (i === 16 && j === 0) || (i === 17 && j === 0)
+                                || (i === 18 && j === 0) || (i === 19 && j === 0)
+                                || (i === 20 && j === 0) || (i === 21 && j === 0)
+                                || (i === 11 && j === 1) || (i === 12 && j === 1)
+                                || (i === 13 && j === 1) || (i === 14 && j === 1)
+                                || (i === 15 && j === 1) || (i === 16 && j === 1)
+                                || (i === 11 && j === 2) || (i === 11 && j === 3)
+
+
+                            ){
+                                    let input = document.createElement("input");
+                                    input.type = "text";
+                                    input.maxLength = 1;
+                                    input.dataset.row = i;
+                                    input.dataset.col = j;
+                                    input.addEventListener("input", function() {
+                                        this.value = this.value.toUpperCase().replace(/[^A-ZÁÉÍÓÚÜÑ]/g, '');
+                                    });
+                                    //cell.classList.remove("hidden-cell");
+                                    cell.classList.add("letra-cell");
+                                    cell.appendChild(input);
+                                }else{
+                                cell.classList.add("hidden-cell");    
+                                }
+
+                                
+                                if (i === 0 && j === 0) { // gatito pitagoras
+                                    cell.colSpan = 7;
+                                    cell.rowSpan = 6;
+                                    cell.classList.add("combined-blue");
+                                } else if (i < 6 && j < 7) {
+                                    continue;
+                                }
+                                
+                                if (i === 0 && j === 7) { //300 en romano
+                                    cell.colSpan = 2;
+                                    cell.rowSpan = 3;
+                                    cell.classList.add("combined-yellow");
+                                } else if (i < 3 && j >= 7 && j <= 8) {
+                                    continue;
+                                }
+                                
+                                if (i === 0 && j === 9) {//angulo opuesto faltante
+                                    cell.colSpan = 4;
+                                    cell.rowSpan = 3;
+                                    cell.classList.add("combined-blue");
+                                } else if (i < 3 && j >= 9 && j <= 12) {
+                                    continue;
+                                }
+                                
+                                if (i === 0 && j === 13) {//cara del cubo
+                                    cell.colSpan = 3;
+                                    cell.rowSpan = 2;
+                                    cell.classList.add("combined-yellow");
+                                } else if (i < 2 && j >= 13 && j <= 15) {
+                                    continue;
+                                }
+                                
+                                if (i === 2 && j === 15) {//piramide
+                                    cell.colSpan = 2;
+                                    cell.rowSpan = 2;
+                                    cell.classList.add("combined-blue");
+                                } else if (i >= 2 && i <= 3 && j >= 15 && j <= 16) {
+                                    continue;
+                                }
+                                
+                                if (i === 0 && j === 17) {//pi
+                                    cell.colSpan = 2;
+                                    cell.classList.add("combined-yellow");
+                                } else if (i === 0 && j >= 17 && j <= 18) {
+                                    continue;
+                                }
+                                
+                                if (i === 3 && j === 17) {//gomin y la torre
+                                    cell.colSpan = 11;
+                                    cell.rowSpan = 9;
+                                    cell.classList.add("combined-yellow");
+                                } else if (i >= 3 && i < 12 && j >= 17 && j <= 27) {
+                                    continue;
+                                }
+                                
+                                if (i === 0 && j === 23) {//500 en romano
+                                    cell.colSpan = 3;
+                                    cell.rowSpan = 2;
+                                    cell.classList.add("combined-blue");
+                                } else if (i < 2 && j >= 23 && j <= 25) {
+                                    continue;
+                                }
+                                
+                                if (i === 5 && j === 28) {//los cuadrilateros
+                                    cell.colSpan = 5;
+                                    cell.rowSpan = 2;
+                                    cell.classList.add("combined-blue");
+                                } else if (i >= 5 && i <= 6 && j >= 28 && j <= 32) {
+                                    continue;
+                                }
+                                
+                                if (i === 1 && j === 30) {//teorema de pita
+                                    cell.colSpan = 5;
+                                    cell.rowSpan = 4;
+                                    cell.classList.add("combined-yellow");
+                                } else if (i >= 1 && i <= 4 && j >= 30 && j <= 34) {
+                                    continue;
+                                }
+                                
+                                if (i === 8 && j === 29) {//transportador
+                                    cell.colSpan = 3;
+                                    cell.rowSpan = 2;
+                                    cell.classList.add("combined-yellow");
+                                } else if (i >= 8 && i <= 9 && j >= 29 && j <= 31) {
+                                    continue;
+                                }
+                                if (i === 10 && j === 30) {//conito
+                                    cell.colSpan = 3;
+                                    cell.rowSpan = 3;
+                                    cell.classList.add("combined-blue");
+                                } else if (i >= 10 && i <= 12 && j >= 30 && j <= 32) {
+                                    continue;
+                                }
+                                if (i === 0 && j === 35) {//radianes
+                                    cell.colSpan = 3;
+                                    cell.rowSpan = 3;
+                                    cell.classList.add("combined-blue");
+                                } else if (i >= 0 && i <= 2 && j >= 35 && j <= 37) {
+                                    continue;
+                                }
+
+                                if (i === 0 && j === 39) {//semejantes
+                                    cell.colSpan = 4;
+                                    cell.rowSpan = 3;
+                                    cell.classList.add("combined-yellow");
+                                } else if (i >= 0 && i <= 2 && j >= 39 && j <= 42) {
+                                    continue;
+                                }
+                                if (i === 0 && j === 43) {//vector
+                                    cell.colSpan = 2;
+                                    cell.rowSpan = 3;
+                                    cell.classList.add("combined-blue");
+                                } else if (i >= 0 && i <= 2 && j >= 43 && j <= 44) {
+                                    continue;
+                                }
+                                if (i === 3 && j === 37) {//circunferencia
+                                    cell.colSpan = 3;
+                                    cell.rowSpan = 3;
+                                    cell.classList.add("combined-blue");
+                                } else if (i >= 3 && i <= 5 && j >= 37 && j <= 39) {
+                                    continue;
+                                }
+
+                                if (i === 3 && j === 42) {//cuadrantes del plano cartesiano
+                                    cell.colSpan = 2;
+                                    cell.rowSpan = 2;
+                                    cell.classList.add("combined-blue");
+                                } else if (i >= 3 && i <= 4 && j >= 42 && j <= 43) {
+                                    continue;
+                                }
+
+                                if (i === 6 && j === 36) {//tres en romano
+                                    cell.colSpan = 3;
+                                    cell.rowSpan = 2;
+                                    cell.classList.add("combined-yellow");
+                                } else if (i >= 6 && i <= 7 && j >= 36 && j <= 38) {
+                                    continue;
+                                }
+
+                                if (i === 11 && j === 36) {//hexagono
+                                    cell.colSpan = 3;
+                                    cell.rowSpan = 3;
+                                    cell.classList.add("combined-yellow");
+                                } else if (i >= 11 && i <= 13 && j >= 36 && j <= 38) {
+                                    continue;
+                                }
+                                if (i === 12 && j === 43) {//concavo
+                                    cell.colSpan = 2;
+                                    cell.rowSpan = 3;
+                                    cell.classList.add("combined-yellow");
+                                } else if (i >= 12 && i <= 14 && j >= 43 && j <= 44) {
+                                    continue;
+                                }
+
+                                if (i === 15 && j === 40) {//angulo agudo
+                                    cell.colSpan = 3;
+                                    cell.rowSpan = 2;
+                                    cell.classList.add("combined-yellow");
+                                } else if (i >= 15 && i <= 16 && j >= 40 && j <= 42) {
+                                    continue;
+                                }
+
+                                if (i === 19 && j === 42) {//cinco en romano
+                                    cell.colSpan = 2;
+                                    cell.rowSpan = 2;
+                                    cell.classList.add("combined-yellow");
+                                } else if (i >= 19 && i <= 20 && j >= 42 && j <= 43) {
+                                    continue;
+                                }
+
+                                if (i === 15 && j === 29) {//problema de perimetro y area
+                                    cell.colSpan = 6;
+                                    cell.rowSpan = 6;
+                                    cell.classList.add("combined-yellow");
+                                } else if (i >= 15 && i <= 20 && j >= 29 && j <= 34) {
+                                    continue;
+                                }
+                                if (i === 20 && j === 35) {//ortoedro
+                                    cell.colSpan = 2;
+                                    cell.rowSpan = 2;
+                                    cell.classList.add("combined-blue");
+                                } else if (i >= 20 && i <= 21 && j >= 35 && j <= 36) {
+                                    continue;
+                                }
+                                if (i === 22 && j === 33) {//tales de...
+                                    cell.colSpan = 4;
+                                    cell.rowSpan = 4;
+                                    cell.classList.add("combined-yellow");
+                                } else if (i >= 22 && i <= 25 && j >= 33 && j <= 36) {
+                                    continue;
+                                }
+                                if (i === 23 && j === 42) {//curva
+                                    cell.colSpan = 3;
+                                    cell.rowSpan = 3;
+                                    cell.classList.add("combined-yellow");
+                                } else if (i >= 23 && i <= 25 && j >= 42 && j <= 44) {
+                                    continue;
+                                }
+                                if (i === 24 && j === 38) {//vertice del cubo
+                                    cell.colSpan = 2;
+                                    cell.rowSpan = 2;
+                                    cell.classList.add("combined-yellow");
+                                } else if (i >= 24 && i <= 25 && j >= 38 && j <= 39) {
+                                    continue;
+                                }
+                                if (i === 6 && j === 0) {//triangulos segun sus lados
+                                    cell.colSpan = 5;
+                                    cell.rowSpan = 3;
+                                    cell.classList.add("combined-yellow");
+                                } else if (i >= 6 && i <= 8 && j >= 0 && j <= 4) {
+                                    continue;
+                                }
+                                if (i === 9 && j === 0) {//cuerda de una circunferencia
+                                    cell.colSpan = 2;
+                                    cell.rowSpan = 2;
+                                    cell.classList.add("combined-blue");
+                                } else if (i >= 9 && i <= 10 && j >= 0 && j <= 1) {
+                                    continue;
+                                }
+                                if (i === 10 && j === 4) {//arco de una circunferencia
+                                    cell.colSpan = 2;
+                                    cell.rowSpan = 2;
+                                    cell.classList.add("combined-blue");
+                                } else if (i >= 10 && i <= 11 && j >= 4 && j <= 5) {
+                                    continue;
+                                }
+                                if (i === 10 && j === 6) {//escuadra
+                                    cell.colSpan = 3;
+                                    cell.rowSpan = 2;
+                                    cell.classList.add("combined-yellow");
+                                } else if (i >= 10 && i <= 11 && j >= 6 && j <= 8) {
+                                    continue;
+                                }
+                                if (i === 4 && j === 8) {//area del circulo
+                                    cell.colSpan = 2;
+                                    cell.rowSpan = 3;
+                                    cell.classList.add("combined-yellow");
+                                } else if (i >= 4 && i <= 6 && j >= 8 && j <= 9) {
+                                    continue;
+                                }
+                                if (i === 12 && j === 9) {//cubito
+                                    cell.colSpan = 2;
+                                    cell.rowSpan = 2;
+                                    cell.classList.add("combined-yellow");
+                                } else if (i >= 12 && i <= 13 && j >= 9 && j <= 10) {
+                                    continue;
+                                }
+                                if (i === 8 && j === 11) {//tangram
+                                    cell.colSpan = 3;
+                                    cell.rowSpan = 3;
+                                    cell.classList.add("combined-yellow");
+                                } else if (i >= 8 && i <= 10 && j >= 11 && j <= 13) {
+                                    continue;
+                                }
+                                if (i === 11 && j === 11) {//complemento de 76 grados
+                                    cell.colSpan = 4;
+                                    cell.rowSpan = 2;
+                                    cell.classList.add("combined-blue");
+                                } else if (i >= 11 && i <= 12 && j >= 11 && j <= 14) {
+                                    continue;
+                                }
+                                if (i === 5 && j === 15) {//radio de la circunferencia
+                                    cell.colSpan = 2;
+                                    cell.rowSpan = 3;
+                                    cell.classList.add("combined-blue");
+                                } else if (i >= 5 && i <= 7 && j >= 15 && j <= 16) {
+                                    continue;
+                                }
+                                if (i === 12 && j === 5) {//compas
+                                    cell.colSpan = 2;
+                                    cell.rowSpan = 3;
+                                    cell.classList.add("combined-blue");
+                                } else if (i >= 12 && i <= 14 && j >= 5 && j <= 6) {
+                                    continue;
+                                }
+                                if (i === 13 && j === 2) {//triangulo equilatero
+                                    cell.colSpan = 3;
+                                    cell.rowSpan = 4;
+                                    cell.classList.add("combined-yellow");
+                                } else if (i >= 13 && i <= 16 && j >= 2 && j <= 4) {
+                                    continue;
+                                }
+                                if (i === 17 && j === 1) {//mil romano
+                                    cell.colSpan = 2;
+                                    cell.rowSpan = 3;
+                                    cell.classList.add("combined-blue");
+                                } else if (i >= 17 && i <= 19 && j >= 1 && j <= 2) {
+                                    continue;
+                                }
+                                if (i === 17 && j === 3) {//paralelepipedo
+                                    cell.colSpan = 3;
+                                    cell.rowSpan = 3;
+                                    cell.classList.add("combined-yellow");
+                                } else if (i >= 17 && i <= 19 && j >= 3 && j <= 5) {
+                                    continue;
+                                }
+                                if (i === 16 && j === 8) {//prisma
+                                    cell.colSpan = 2;
+                                    cell.rowSpan = 3;
+                                    cell.classList.add("combined-yellow");
+                                } else if (i >= 16 && i <= 18 && j >= 8 && j <= 9) {
+                                    continue;
+                                }
+                                if (i === 22 && j === 0) {//homotecia
+                                    cell.colSpan = 5;
+                                    cell.rowSpan = 4;
+                                    cell.classList.add("combined-yellow");
+                                } else if (i >= 22 && i <= 25 && j >= 0 && j <= 4) {
+                                    continue;
+                                }
+                                if (i === 20 && j === 5) {//angulo de 90 grados
+                                    cell.colSpan = 3;
+                                    cell.rowSpan = 3;
+                                    cell.classList.add("combined-blue");
+                                } else if (i >= 20 && i <= 22 && j >= 5 && j <= 7) {
+                                    continue;
+                                }
+                                if (i === 21 && j === 8) {//esfera
+                                    cell.colSpan = 2;
+                                    cell.rowSpan = 2;
+                                    cell.classList.add("combined-yellow");
+                                } else if (i >= 21 && i <= 22 && j >= 8 && j <= 9) {
+                                    continue;
+                                }
+                                if (i === 23 && j === 7) {//angulos complementarios
+                                    cell.colSpan = 4;
+                                    cell.rowSpan = 3;
+                                    cell.classList.add("combined-blue");
+                                } else if (i >= 23 && i <= 25 && j >= 7 && j <= 10) {
+                                    continue;
+                                }
+                                if (i === 13 && j === 16) {//trapecio
+                                    cell.colSpan = 3;
+                                    cell.rowSpan = 2;
+                                    cell.classList.add("combined-blue");
+                                } else if (i >= 13 && i <= 14 && j >= 16 && j <= 18) {
+                                    continue;
+                                }
+                                if (i === 15 && j === 15) {//arista del cubo
+                                    cell.colSpan = 2;
+                                    cell.rowSpan = 2;
+                                    cell.classList.add("combined-yellow");
+                                } else if (i >= 15 && i <= 16 && j >= 15 && j <= 16) {
+                                    continue;
+                                }
+                                if (i === 12 && j === 20) {//plano
+                                    cell.colSpan = 2;
+                                    cell.rowSpan = 3;
+                                    cell.classList.add("combined-yellow");
+                                } else if (i >= 12 && i <= 14 && j >= 20 && j <= 21) {
+                                    continue;
+                                }
+                                if (i === 12 && j === 22) {//poligonos
+                                    cell.colSpan = 4;
+                                    cell.rowSpan = 3;
+                                    cell.classList.add("combined-blue");
+                                } else if (i >= 12 && i <= 14 && j >= 22 && j <= 25) {
+                                    continue;
+                                }
+                                if (i === 15 && j === 22) {//circulo inscrito
+                                    cell.colSpan = 3;
+                                    cell.rowSpan = 3;
+                                    cell.classList.add("combined-yellow");
+                                } else if (i >= 15 && i <= 17 && j >= 22 && j <= 24) {
+                                    continue;
+                                }
+                                if (i === 15 && j === 25) {//recta
+                                    cell.colSpan = 3;
+                                    cell.rowSpan = 2;
+                                    cell.classList.add("combined-blue");
+                                } else if (i >= 15 && i <= 16 && j >= 25 && j <= 27) {
+                                    continue;
+                                }
+                                if (i === 19 && j === 21) {//plano cartesiano
+                                    cell.colSpan = 3;
+                                    cell.rowSpan = 3;
+                                    cell.classList.add("combined-blue");
+                                } else if (i >= 19 && i <= 21 && j >= 21 && j <= 23) {
+                                    continue;
+                                }
+                                if (i === 20 && j === 18) {//angulo obtuso
+                                    cell.colSpan = 3;
+                                    cell.rowSpan = 2;
+                                    cell.classList.add("combined-yellow");
+                                } else if (i >= 20 && i <= 21 && j >= 18 && j <= 20) {
+                                    continue;
+                                }
+                                if (i === 23 && j === 14) {//50 romano
+                                    cell.colSpan = 2;
+                                    cell.rowSpan = 2;
+                                    cell.classList.add("combined-yellow");
+                                } else if (i >= 23 && i <= 24 && j >= 14 && j <= 15) {
+                                    continue;
+                                }
+                                if (i === 22 && j === 19) {//cuantos cubitos le faltan al cubote
+                                    cell.colSpan = 5;
+                                    cell.rowSpan = 3;
+                                    cell.classList.add("combined-yellow");
+                                } else if (i >= 22 && i <= 24 && j >= 19 && j <= 23) {
+                                    continue;
+                                }
+                                if (i === 22 && j === 25) {//cubo rubik
+                                    cell.colSpan = 2;
+                                    cell.rowSpan = 2;
+                                    cell.classList.add("combined-yellow");
+                                } else if (i >= 22 && i <= 23 && j >= 25 && j <= 26) {
+                                    continue;
+                                }
+
+                                
+
+
+
+
+
+                                row.appendChild(cell);
+                            }
+                            table.appendChild(row);
+                        }
+                    });
+                </script>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function calificar() {
+            let inputs = document.querySelectorAll("input[data-row][data-col]");
+            let completo = true;
+            let contador = 0;
+            inputs.forEach(input => {
+                if (!input.value) completo = false;
+            });
+
+            const mensaje = document.getElementById("mensaje");
+
+            if (!completo) {
+                alert("CRUCIGRAMA INCOMPLETO - POR FAVOR TERMINARLO!");
+                return;
+            }
+
+            inputs.forEach(input => {
+                let fila = parseInt(input.dataset.row);
+                let columna = parseInt(input.dataset.col);
+                let correcta = (fila === 1 && columna === 18 && input.value === "P") || 
+                               (fila === 2 && columna === 18 && input.value === "I") || 
+                               (fila === 2 && columna === 17 && input.value === "P") || 
+                               (fila === 2 && columna === 13 && input.value === "C") ||
+                               (fila === 2 && columna === 19 && input.value === "R") ||
+                               (fila === 2 && columna === 20 && input.value === "A") ||
+                               (fila === 2 && columna === 21 && input.value === "M") ||
+                               (fila === 2 && columna === 22 && input.value === "I") ||
+                               (fila === 2 && columna === 23 && input.value === "D") ||
+                               (fila === 2 && columna === 24 && input.value === "E") ||
+                               (fila === 3 && columna === 7 && input.value === "C") ||
+                               (fila === 3 && columna === 8 && input.value === "I") ||
+                               (fila === 3 && columna === 9 && input.value === "N") ||
+                               (fila === 3 && columna === 10 && input.value === "C") ||
+                               (fila === 3 && columna === 11 && input.value === "O") ||
+                               (fila === 3 && columna === 13 && input.value === "A") ||
+                               (fila === 3 && columna === 35 && input.value === "R") ||
+                               (fila === 3 && columna === 41 && input.value === "S") ||
+                               (fila === 3 && columna === 44 && input.value === "V") || 
+                               (fila === 4 && columna === 7 && input.value === "C") ||  
+                               (fila === 4 && columna === 10 && input.value === "U") || 
+                               (fila === 4 && columna === 13 && input.value === "R") || 
+                               (fila === 4 && columna === 35 && input.value === "A") ||
+                               (fila === 4 && columna === 41 && input.value === "E") ||
+                               (fila === 4 && columna === 44 && input.value === "E") || 
+                               (fila === 5 && columna === 7 && input.value === "C") || 
+                               (fila === 5 && columna === 10 && input.value === "A") || 
+                               (fila === 5 && columna === 11 && input.value === "R") || 
+                               (fila === 5 && columna === 12 && input.value === "E") || 
+                               (fila === 5 && columna === 13 && input.value === "A") ||
+                               (fila === 6 && columna === 10 && input.value === "R") ||
+                               (fila === 7 && columna === 10 && input.value === "E") ||
+                               (fila === 8 && columna === 10 && input.value === "N") ||
+                               (fila === 9 && columna === 10 && input.value === "T") ||
+                               (fila === 10 && columna === 10 && input.value === "A") ||
+                               (fila === 7 && columna === 5 && input.value === "I") ||
+                               (fila === 7 && columna === 6 && input.value === "S") ||
+                               (fila === 7 && columna === 7 && input.value === "O") ||
+                               (fila === 7 && columna === 8 && input.value === "S") ||
+                               (fila === 7 && columna === 9 && input.value === "C") ||
+                               (fila === 7 && columna === 11 && input.value === "L") ||
+                               (fila === 7 && columna === 12 && input.value === "E") ||
+                               (fila === 7 && columna === 13 && input.value === "S") ||
+                               (fila === 7 && columna === 28 && input.value === "C") ||
+                               (fila === 7 && columna === 29 && input.value === "U") ||
+                               (fila === 7 && columna === 30 && input.value === "A") ||
+                               (fila === 7 && columna === 31 && input.value === "R") ||
+                               (fila === 7 && columna === 32 && input.value === "E") ||
+                               (fila === 7 && columna === 33 && input.value === "N") ||
+                               (fila === 7 && columna === 34 && input.value === "T") ||
+                               (fila === 7 && columna === 35 && input.value === "A") ||
+                               (fila === 5 && columna === 34 && input.value === "P") ||
+                               (fila === 5 && columna === 35 && input.value === "D") ||
+                               (fila === 6 && columna === 35 && input.value === "I") ||
+                               (fila === 6 && columna === 33 && input.value === "I") ||
+                               (fila === 6 && columna === 34 && input.value === "I") ||
+                               (fila === 8 && columna === 15 && input.value === "R") ||
+                               (fila === 9 && columna === 15 && input.value === "A") ||
+                               (fila === 10 && columna === 15 && input.value === "D") ||
+                               (fila === 11 && columna === 15 && input.value === "I") ||
+                               (fila === 12 && columna === 15 && input.value === "O")||
+                               (fila === 12 && columna === 16 && input.value === "N")||
+                               (fila === 12 && columna === 17 && input.value === "A")||
+                               (fila === 12 && columna === 18 && input.value === "L")||
+                               (fila === 12 && columna === 19 && input.value === "P")||
+                               (fila === 12 && columna === 28 && input.value === "I")||
+                               (fila === 8 && columna === 32 && input.value === "T")||
+                               (fila === 8 && columna === 33 && input.value === "R")||
+                               (fila === 8 && columna === 34 && input.value === "A")||
+                               (fila === 8 && columna === 35 && input.value === "N")||
+                               (fila === 8 && columna === 36 && input.value === "S")||
+                               (fila === 8 && columna === 37 && input.value === "P")||
+                               (fila === 8 && columna === 38 && input.value === "O")||
+                               (fila === 8 && columna === 39 && input.value === "R")||
+                               (fila === 8 && columna === 40 && input.value === "T")||
+                               (fila === 8 && columna === 41 && input.value === "A")||
+                               (fila === 8 && columna === 42 && input.value === "D")||
+                               (fila === 8 && columna === 43 && input.value === "O")||
+                               (fila === 8 && columna === 44 && input.value === "R")||
+                               (fila === 5 && columna === 44 && input.value === "C")||
+                               (fila === 8 && columna === 28 && input.value === "U")||
+                               (fila === 9 && columna === 28 && input.value === "A")||
+                               (fila === 10 && columna === 28 && input.value === "D")||
+                               (fila === 11 && columna === 28 && input.value === "R")||
+                               (fila === 13 && columna === 28 && input.value === "L")||
+                               (fila === 14 && columna === 28 && input.value === "A")||
+                               (fila === 15 && columna === 28 && input.value === "T")||
+                               (fila === 16 && columna === 28 && input.value === "E")||
+                               (fila === 17 && columna === 28 && input.value === "R")||
+                               (fila === 18 && columna === 28 && input.value === "O")||
+                               (fila === 19 && columna === 28 && input.value === "S")||
+                               (fila === 13 && columna === 26 && input.value === "P")||
+                               (fila === 5 && columna === 41 && input.value === "M")||
+                               (fila === 6 && columna === 41 && input.value === "E")||
+                               (fila === 7 && columna === 41 && input.value === "J")||
+                               (fila === 9 && columna === 41 && input.value === "N")||
+                               (fila === 10 && columna === 41 && input.value === "T")||
+                               (fila === 11 && columna === 41 && input.value === "E")||
+                               (fila === 12 && columna === 41 && input.value === "S")||
+                               (fila === 6 && columna === 44 && input.value === "T")||
+                               (fila === 5 && columna === 42 && input.value === "C")||
+                               (fila === 6 && columna === 42 && input.value === "U")||
+                               (fila === 7 && columna === 42 && input.value === "A")||
+                               (fila === 9 && columna === 42 && input.value === "R")||
+                               (fila === 10 && columna === 42 && input.value === "A")||
+                               (fila === 11 && columna === 42 && input.value === "N")||
+                               (fila === 12 && columna === 42 && input.value === "T")||
+                               (fila === 13 && columna === 42 && input.value === "E")||
+                               (fila === 14 && columna === 42 && input.value === "S")||
+                               (fila === 7 && columna === 44 && input.value === "O")||
+                               (fila === 25 && columna === 11 && input.value === "C")||
+                               (fila === 25 && columna === 12 && input.value === "O")||
+                               (fila === 25 && columna === 13 && input.value === "M")||
+                               (fila === 25 && columna === 14 && input.value === "P")||
+                               (fila === 25 && columna === 15 && input.value === "L")||
+                               (fila === 25 && columna === 16 && input.value === "E")||
+                               (fila === 25 && columna === 17 && input.value === "M")||
+                               (fila === 25 && columna === 18 && input.value === "E")||
+                               (fila === 25 && columna === 19 && input.value === "N")||
+                               (fila === 25 && columna === 20 && input.value === "T")||
+                               (fila === 25 && columna === 21 && input.value === "A")||
+                               (fila === 25 && columna === 22 && input.value === "R")||
+                               (fila === 25 && columna === 23 && input.value === "I")||
+                               (fila === 25 && columna === 24 && input.value === "O")||
+                               (fila === 25 && columna === 25 && input.value === "S")||
+                               (fila === 13 && columna === 27 && input.value === "O")||
+                               (fila === 11 && columna === 0 && input.value === "O")||
+                               (fila === 13 && columna === 0 && input.value === "A")||
+                               (fila === 14 && columna === 0 && input.value === "I")||
+                               (fila === 15 && columna === 0 && input.value === "C")||
+                               (fila === 16 && columna === 0 && input.value === "E")||
+                               (fila === 17 && columna === 0 && input.value === "T")||
+                               (fila === 18 && columna === 0 && input.value === "O")||
+                               (fila === 19 && columna === 0 && input.value === "M")||
+                               (fila === 20 && columna === 0 && input.value === "O")||
+                               (fila === 21 && columna === 0 && input.value === "H")||
+                               (fila === 11 && columna === 1 && input.value === "C")||
+                               (fila === 12 && columna === 1 && input.value === "U")||
+                               (fila === 13 && columna === 1 && input.value === "E")||
+                               (fila === 14 && columna === 1 && input.value === "R")||
+                               (fila === 15 && columna === 1 && input.value === "D")||
+                               (fila === 16 && columna === 1 && input.value === "A")||
+                               (fila === 11 && columna === 2 && input.value === "R")||
+                               (fila === 11 && columna === 3 && input.value === "A")
+
+
+
+
+
+                               ;
+                input.classList.remove("correct", "incorrect");
+                input.classList.add(correcta ? "correct" : "incorrect");
+                input.classList.add(correcta ? contador : contador++);
+            });
+            if (contador>0) {
+                mensaje.textContent = "TIENES "+contador+" LETRAS MAL! CORRIGE!";
+                
+            }else{
+                mensaje.textContent = "FELICITACIONES! MATEGRAMA PERFECTO!";
+        
+            }
+        }
+    </script>
+
+
+</body>
+</html>
