@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tabla de Crucigrama</title>
+    <title>MATEGRAMA DE GEOMETRÍA</title>
     <style>
         .table-container {
             width: 100%;
@@ -115,11 +115,30 @@
             padding: 0;
             margin: 0;
         }
+        /* Estilos del botón */
+        button {
+            background-color: #66b3ff; /* Azul claro */
+            color: white; /* Texto blanco */
+            font-size: 18px;
+            font-family: Arial, sans-serif;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 30px; /* Bordes redondeados */
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+        }
+        .estiloletra {
+            color: #007bff; /* Texto blanco */
+            font-family: Arial, sans-serif;
+            border: none;
+            
+        }
     </style>
 </head>
 <body>
-    <h2>Tabla del Crucigrama</h2>
-    <div id="mensaje">Recuerda que NO debes utilizar tildes y TAMPOCO números</div>
+    <h2 class="estiloletra">MATEGRAMA DE GEOMETRIA</h2>
+    <div id="mensaje" class="estiloletra">Recuerda que NO debes utilizar tildes y TAMPOCO números</div>
+        <br>
     <button onclick="calificar()">CALIFICAR</button>
     <div class="table-container">
         <table>
