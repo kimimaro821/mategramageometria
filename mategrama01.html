@@ -9,14 +9,15 @@
             width: 100%;
             max-width: 100vw;
             overflow-x: auto;
+            border-spacing: 0 !important;
         }
         table { 
 
-            border-collapse: collapse; 
+            border-collapse: collapse !important;
             width: 100%; /* La tabla ocupa todo el ancho de la ventana */
-             
+             border-spacing: 0 !important;
         }
-        td { 
+        td, th { 
             width: calc(100vw / 50); /* Cada celda ocupa 1/45 del ancho de la ventana */
             height: calc(100vw / 50); /* Mantiene la relación de aspecto cuadrada */
             text-align: center; 
@@ -25,12 +26,14 @@
             position: relative;
             padding: 0;
             margin: 0;
+            border-collapse: collapse !important;
         }
         input {
-            width: 100%;
-            height: 100%;
+            border-collapse: collapse !important;
+            width: 80%;
+            height: 80%;
             text-align: center;
-            font-size: calc(100vw / 55); /* Ajusta el tamaño del texto sin afectar los bordes */
+            font-size: calc(100vw / 70); /* Ajusta el tamaño del texto sin afectar los bordes */
             text-transform: uppercase;
             outline: none;
             background: transparent;
@@ -38,36 +41,79 @@
             top: 0;
             left: 0;
             color: black;
+            margin: 0;
+            padding: 0;
         }
         .hidden-cell {
-            border: 1px  white; 
-            /*border: none !important;*/
+            /*border: 1px solid white; */
+            border: none !important;
             background: white !important;
+            padding: 0;
+            margin: 0;
+            border-collapse: collapse !important;
+        }
+        .negro {
+            /*border: 1px solid black; */
+            border: none !important;
+
+            background: black !important;
+            padding: 0;
+            margin: 0;
+            border-collapse: collapse!important;
         }
         .letra-cell {
-            border: 1px  black; 
+            /*border: 1px solid black; */
             background: white !important;
+            padding: 0;
+            margin: 0;
+            border-collapse: collapse!important;
         }
 
+        /* Estilos generales para las celdas con fondo */
+        .bg-image {
+            background-size: cover;  /* La imagen cubre sin deformarse */
+            background-position: center; /* La imagen se centra */
+            background-repeat: no-repeat; /* No se repite la imagen */
+            padding: 0;
+            margin: 0;
+            border-collapse: collapse !important;
+        }
 
+        img {
+            max-width: 100%; /* La imagen se ajusta al ancho de la celda */
+            height: auto; /* Mantiene la relación de aspecto */
+            display: block; /* Evita espacios en línea no deseados */
+            margin: auto; /* Centra la imagen */
+        }
 
         .combined-blue {
+
             background-color: skyblue !important;
             border: 1px solid white; 
+            padding: 0;
+            margin: 0;
+            border-collapse: collapse !important;
          /*   border: none !important;*/
         }
         .combined-yellow {
             background-color: yellow !important;
             border: 1px solid white; 
+            padding: 0;
+            margin: 0;
+            border-collapse: collapse !important;
             /*border: none !important;*/
         }
         .incorrect {
             background-color: red !important;
             color: white !important;
+            padding: 0;
+            margin: 0;
         }
         .correct {
             background-color: green !important;
             color: white !important;
+            padding: 0;
+            margin: 0;
         }
     </style>
 </head>
@@ -159,6 +205,99 @@
                                 || (i === 13 && j === 1) || (i === 14 && j === 1)
                                 || (i === 15 && j === 1) || (i === 16 && j === 1)
                                 || (i === 11 && j === 2) || (i === 11 && j === 3)
+                                || (i === 20 && j === 1) || (i === 20 && j === 3)
+                                || (i === 20 && j === 2) || (i === 20 && j === 4)
+                                || (i === 9 && j === 4) || (i === 9 && j === 5)
+                                || (i === 9 && j === 6) || (i === 9 && j === 7)
+                                || (i === 9 && j === 8) || (i === 9 && j === 9)
+                                || (i === 15 && j === 5) || (i === 15 && j === 6)
+                                || (i === 15 && j === 7) || (i === 15 && j === 8)
+                                || (i === 15 && j === 9) || (i === 15 && j === 10)
+                                || (i === 15 && j === 11) || (i === 15 && j === 12)
+                                || (i === 15 && j === 13) || (i === 15 && j === 14)
+                                || (i === 19 && j === 6) || (i === 19 && j === 7)
+                                || (i === 19 && j === 8) || (i === 19 && j === 9)
+                                || (i === 19 && j === 10) || (i === 19 && j === 11)
+                                || (i === 19 && j === 12) || (i === 19 && j === 13)
+                                || (i === 19 && j === 14) || (i === 19 && j === 15)
+                                || (i === 19 && j === 16) || (i === 19 && j === 17)
+                                || (i === 19 && j === 18) || (i === 19 && j === 19)
+                                || (i === 17 && j === 10) || (i === 17 && j === 11)
+                                || (i === 17 && j === 12) || (i === 17 && j === 13)
+                                || (i === 17 && j === 14) || (i === 17 && j === 15)
+                                || (i === 13 && j === 11) || (i === 13 && j === 12)
+                                || (i === 13 && j === 13) || (i === 13 && j === 14)
+                                || (i === 14 && j === 7) || (i === 14 && j === 8)
+                                || (i === 14 && j === 9) || (i === 14 && j === 10)
+                                || (i === 14 && j === 11) || (i === 14 && j === 12)
+                                || (i === 12 && j === 7) || (i === 13 && j === 7)
+                                || (i === 22 && j === 10) || (i === 22 && j === 11)
+                                || (i === 22 && j === 12) || (i === 22 && j === 13)
+                                || (i === 22 && j === 14) || (i === 22 && j === 15)
+                                || (i === 6 && j === 39) || (i === 7 && j === 39)
+                                || (i === 9 && j === 39) || (i === 10 && j === 39)
+                                || (i === 11 && j === 39) || (i === 12 && j === 39)
+                                || (i === 13 && j === 39) || (i === 14 && j === 39)
+                                || (i === 15 && j === 39) || (i === 16 && j === 39)
+                                || (i === 17 && j === 39) || (i === 18 && j === 39)
+                                || (i === 19 && j === 39) || (i === 9 && j === 34)
+                                || (i === 15 && j === 35) || (i === 15 && j === 36)
+                                || (i === 15 && j === 37) || (i === 15 && j === 38)
+                                || (i === 13 && j === 29) || (i === 13 && j === 30)
+                                || (i === 13 && j === 31) || (i === 13 && j === 32)
+                                || (i === 13 && j === 33) || (i === 13 && j === 34)
+                                || (i === 10 && j === 33) || (i === 10 && j === 34)
+                                || (i === 10 && j === 35) || (i === 10 && j === 36)
+                                || (i === 11 && j === 34) || (i === 12 && j === 34)
+                                || (i === 23 && j === 37) || (i === 23 && j === 38)
+                                || (i === 23 && j === 39) || (i === 23 && j === 40)
+                                || (i === 23 && j === 41) || (i === 14 && j === 37)
+                                || (i === 21 && j === 37) || (i === 21 && j === 38)
+                                || (i === 21 && j === 39) || (i === 21 && j === 40)
+                                || (i === 21 && j === 41) || (i === 21 && j === 42)
+                                || (i === 21 && j === 43) || (i === 21 && j === 44)
+                                || (i === 15 && j === 44) || (i === 16 && j === 44)
+                                || (i === 17 && j === 44) || (i === 18 && j === 44)
+                                || (i === 19 && j === 44) || (i === 20 && j === 44)
+                                || (i === 17 && j === 40) || (i === 18 && j === 40)
+                                || (i === 19 && j === 40) || (i === 20 && j === 40)
+                                || (i === 17 && j === 38) || (i === 18 && j === 38)
+                                || (i === 19 && j === 38) || (i === 20 && j === 38)
+                                || (i === 16 && j === 37) || (i === 17 && j === 37)
+                                || (i === 18 && j === 37) || (i === 19 && j === 37)
+                                || (i === 20 && j === 37) || (i === 22 && j === 38)
+                                || (i === 21 && j === 24) || (i === 21 && j === 25)
+                                || (i === 21 && j === 26) || (i === 21 && j === 27)
+                                || (i === 21 && j === 28) || (i === 21 && j === 29)
+                                || (i === 21 && j === 30) || (i === 21 && j === 31)
+                                || (i === 21 && j === 32) || (i === 21 && j === 33)
+                                || (i === 23 && j === 27) || (i === 23 && j === 28)
+                                || (i === 23 && j === 29) || (i === 23 && j === 30)
+                                || (i === 23 && j === 31) || (i === 23 && j === 32)
+                                || (i === 10 && j === 29) || (i === 11 && j === 29)
+                                || (i === 12 && j === 29) || (i === 14 && j === 29)
+                                || (i === 17 && j === 26) || (i === 18 && j === 26)
+                                || (i === 19 && j === 26) || (i === 20 && j === 26)
+                                || (i === 17 && j === 25) || (i === 18 && j === 25)
+                                || (i === 19 && j === 25) || (i === 20 && j === 25)
+                                || (i === 18 && j === 24) || (i === 19 && j === 24)
+                                || (i === 20 && j === 24) || (i === 22 && j === 24)
+                                || (i === 23 && j === 24) || (i === 24 && j === 24)
+                                || (i === 24 && j === 25) || (i === 24 && j === 26)
+                                || (i === 24 && j === 27) || (i === 24 && j === 28)
+                                || (i === 24 && j === 29) || (i === 24 && j === 30)
+                                || (i === 22 && j === 29) || (i === 25 && j === 29)
+                                || (i === 14 && j === 19) || (i === 15 && j === 19)
+                                || (i === 16 && j === 19) || (i === 17 && j === 19)
+                                || (i === 18 && j === 19) || (i === 16 && j === 7)
+                                || (i === 17 && j === 7) || (i === 18 && j === 7)
+                                || (i === 16 && j === 11) || (i === 18 && j === 11)
+                                || (i === 15 && j === 17) || (i === 16 && j === 17)
+                                || (i === 17 && j === 17) || (i === 18 && j === 17)
+                                || (i === 18 && j === 15) || (i === 20 && j === 15)
+                                || (i === 21 && j === 15) || (i === 20 && j === 17)
+                                || (i === 21 && j === 17) || (i === 22 && j === 17)
+
 
 
                             ){
@@ -177,11 +316,26 @@
                                 cell.classList.add("hidden-cell");    
                                 }
 
+                                /*if (i === 16 && j === 38) { // espacio negro muerto
+                                    cell.classList.remove("hidden-cell");    
+                                    cell.classList.add("negro");
+                                    
+                                } */
                                 
                                 if (i === 0 && j === 0) { // gatito pitagoras
                                     cell.colSpan = 7;
                                     cell.rowSpan = 6;
-                                    cell.classList.add("combined-blue");
+                                    cell.classList.remove("hidden-cell");    
+                                    /*cell.classList.add("bg-image");*/
+                                    /*cell.style.backgroundImage ='url("gatito_pita.png")';*/
+
+                                    let img = document.createElement("img");
+                                    img.src = "https://lasmatesfaciles.com/wp-content/uploads/2025/03/gatito_pita.png"; // URL de la imagen
+                                    img.alt = "ejercicio pitagoras";
+                                    // Anexar la imagen a la celda
+                                    cell.appendChild(img);
+
+
                                 } else if (i < 6 && j < 7) {
                                     continue;
                                 }
@@ -189,7 +343,16 @@
                                 if (i === 0 && j === 7) { //300 en romano
                                     cell.colSpan = 2;
                                     cell.rowSpan = 3;
-                                    cell.classList.add("combined-yellow");
+                                    cell.classList.remove("hidden-cell");    
+                                    /*cell.classList.add("bg-image");
+                                    cell.style.backgroundImage ='url("romano300.png")';
+*/
+
+                                    let img = document.createElement("img");
+                                    img.src = "https://lasmatesfaciles.com/wp-content/uploads/2025/03/romano300.png"; // URL de la imagen
+                                    img.alt = "300 en romano";
+                                    // Anexar la imagen a la celda
+                                    cell.appendChild(img);
                                 } else if (i < 3 && j >= 7 && j <= 8) {
                                     continue;
                                 }
@@ -197,7 +360,17 @@
                                 if (i === 0 && j === 9) {//angulo opuesto faltante
                                     cell.colSpan = 4;
                                     cell.rowSpan = 3;
-                                    cell.classList.add("combined-blue");
+                                    cell.classList.remove("hidden-cell");    
+                                    /*cell.classList.add("bg-image");
+                                    cell.style.backgroundImage ='url("opuestofaltante.png")';
+*/
+                                    let img = document.createElement("img");
+                                    img.src = "https://lasmatesfaciles.com/wp-content/uploads/2025/03/opuestofaltante.png"; // URL de la imagen
+                                    img.alt = "angulo opuesto";
+                                    // Anexar la imagen a la celda
+                                    cell.appendChild(img);
+
+
                                 } else if (i < 3 && j >= 9 && j <= 12) {
                                     continue;
                                 }
@@ -205,7 +378,9 @@
                                 if (i === 0 && j === 13) {//cara del cubo
                                     cell.colSpan = 3;
                                     cell.rowSpan = 2;
-                                    cell.classList.add("combined-yellow");
+                                    cell.classList.remove("hidden-cell");    
+                                    cell.classList.add("bg-image");
+                                    cell.style.backgroundImage ='url("https://lasmatesfaciles.com/wp-content/uploads/2025/03/caracubo.png")';
                                 } else if (i < 2 && j >= 13 && j <= 15) {
                                     continue;
                                 }
@@ -213,14 +388,18 @@
                                 if (i === 2 && j === 15) {//piramide
                                     cell.colSpan = 2;
                                     cell.rowSpan = 2;
-                                    cell.classList.add("combined-blue");
+                                    cell.classList.remove("hidden-cell");    
+                                    cell.classList.add("bg-image");
+                                    cell.style.backgroundImage ='url("https://lasmatesfaciles.com/wp-content/uploads/2025/03/piramide.png")';
                                 } else if (i >= 2 && i <= 3 && j >= 15 && j <= 16) {
                                     continue;
                                 }
                                 
                                 if (i === 0 && j === 17) {//pi
                                     cell.colSpan = 2;
-                                    cell.classList.add("combined-yellow");
+                                    cell.classList.remove("hidden-cell");    
+                                    cell.classList.add("bg-image");
+                                    cell.style.backgroundImage ='url("https://lasmatesfaciles.com/wp-content/uploads/2025/03/pi.png")';
                                 } else if (i === 0 && j >= 17 && j <= 18) {
                                     continue;
                                 }
@@ -228,7 +407,9 @@
                                 if (i === 3 && j === 17) {//gomin y la torre
                                     cell.colSpan = 11;
                                     cell.rowSpan = 9;
-                                    cell.classList.add("combined-yellow");
+                                    cell.classList.remove("hidden-cell");    
+                                    cell.classList.add("bg-image");
+                                    cell.style.backgroundImage ='url("https://lasmatesfaciles.com/wp-content/uploads/2025/03/gomin.png")';
                                 } else if (i >= 3 && i < 12 && j >= 17 && j <= 27) {
                                     continue;
                                 }
@@ -236,7 +417,9 @@
                                 if (i === 0 && j === 23) {//500 en romano
                                     cell.colSpan = 3;
                                     cell.rowSpan = 2;
-                                    cell.classList.add("combined-blue");
+                                    cell.classList.remove("hidden-cell");    
+                                    cell.classList.add("bg-image");
+                                    cell.style.backgroundImage ='url("https://lasmatesfaciles.com/wp-content/uploads/2025/03/romano500.png")';
                                 } else if (i < 2 && j >= 23 && j <= 25) {
                                     continue;
                                 }
@@ -244,7 +427,9 @@
                                 if (i === 5 && j === 28) {//los cuadrilateros
                                     cell.colSpan = 5;
                                     cell.rowSpan = 2;
-                                    cell.classList.add("combined-blue");
+                                    cell.classList.remove("hidden-cell");    
+                                    cell.classList.add("bg-image");
+                                    cell.style.backgroundImage ='url("https://lasmatesfaciles.com/wp-content/uploads/2025/03/cuadrilateros.png")';
                                 } else if (i >= 5 && i <= 6 && j >= 28 && j <= 32) {
                                     continue;
                                 }
@@ -252,7 +437,9 @@
                                 if (i === 1 && j === 30) {//teorema de pita
                                     cell.colSpan = 5;
                                     cell.rowSpan = 4;
-                                    cell.classList.add("combined-yellow");
+                                    cell.classList.remove("hidden-cell");    
+                                    cell.classList.add("bg-image");
+                                    cell.style.backgroundImage ='url("https://lasmatesfaciles.com/wp-content/uploads/2025/03/teoremapita.png")';
                                 } else if (i >= 1 && i <= 4 && j >= 30 && j <= 34) {
                                     continue;
                                 }
@@ -260,21 +447,27 @@
                                 if (i === 8 && j === 29) {//transportador
                                     cell.colSpan = 3;
                                     cell.rowSpan = 2;
-                                    cell.classList.add("combined-yellow");
+                                    cell.classList.remove("hidden-cell");    
+                                    cell.classList.add("bg-image");
+                                    cell.style.backgroundImage ='url("https://lasmatesfaciles.com/wp-content/uploads/2025/03/transportador.png")';
                                 } else if (i >= 8 && i <= 9 && j >= 29 && j <= 31) {
                                     continue;
                                 }
                                 if (i === 10 && j === 30) {//conito
                                     cell.colSpan = 3;
                                     cell.rowSpan = 3;
-                                    cell.classList.add("combined-blue");
+                                    cell.classList.remove("hidden-cell");    
+                                    cell.classList.add("bg-image");
+                                    cell.style.backgroundImage ='url("https://lasmatesfaciles.com/wp-content/uploads/2025/03/cono.png")';
                                 } else if (i >= 10 && i <= 12 && j >= 30 && j <= 32) {
                                     continue;
                                 }
                                 if (i === 0 && j === 35) {//radianes
                                     cell.colSpan = 3;
                                     cell.rowSpan = 3;
-                                    cell.classList.add("combined-blue");
+                                    cell.classList.remove("hidden-cell");    
+                                    cell.classList.add("bg-image");
+                                    cell.style.backgroundImage ='url("https://lasmatesfaciles.com/wp-content/uploads/2025/03/radianes.png")';
                                 } else if (i >= 0 && i <= 2 && j >= 35 && j <= 37) {
                                     continue;
                                 }
@@ -282,21 +475,27 @@
                                 if (i === 0 && j === 39) {//semejantes
                                     cell.colSpan = 4;
                                     cell.rowSpan = 3;
-                                    cell.classList.add("combined-yellow");
+                                    cell.classList.remove("hidden-cell");    
+                                    cell.classList.add("bg-image");
+                                    cell.style.backgroundImage ='url("https://lasmatesfaciles.com/wp-content/uploads/2025/03/semejantes.png")';
                                 } else if (i >= 0 && i <= 2 && j >= 39 && j <= 42) {
                                     continue;
                                 }
                                 if (i === 0 && j === 43) {//vector
                                     cell.colSpan = 2;
                                     cell.rowSpan = 3;
-                                    cell.classList.add("combined-blue");
+                                    cell.classList.remove("hidden-cell");    
+                                    cell.classList.add("bg-image");
+                                    cell.style.backgroundImage ='url("https://lasmatesfaciles.com/wp-content/uploads/2025/03/vector.png")';
                                 } else if (i >= 0 && i <= 2 && j >= 43 && j <= 44) {
                                     continue;
                                 }
                                 if (i === 3 && j === 37) {//circunferencia
                                     cell.colSpan = 3;
                                     cell.rowSpan = 3;
-                                    cell.classList.add("combined-blue");
+                                    cell.classList.remove("hidden-cell");    
+                                    cell.classList.add("bg-image");
+                                    cell.style.backgroundImage ='url("https://lasmatesfaciles.com/wp-content/uploads/2025/03/circunferencia.png")';
                                 } else if (i >= 3 && i <= 5 && j >= 37 && j <= 39) {
                                     continue;
                                 }
@@ -304,7 +503,9 @@
                                 if (i === 3 && j === 42) {//cuadrantes del plano cartesiano
                                     cell.colSpan = 2;
                                     cell.rowSpan = 2;
-                                    cell.classList.add("combined-blue");
+                                    cell.classList.remove("hidden-cell");    
+                                    cell.classList.add("bg-image");
+                                    cell.style.backgroundImage ='url("https://lasmatesfaciles.com/wp-content/uploads/2025/03/cuadrantes.png")';
                                 } else if (i >= 3 && i <= 4 && j >= 42 && j <= 43) {
                                     continue;
                                 }
@@ -312,7 +513,9 @@
                                 if (i === 6 && j === 36) {//tres en romano
                                     cell.colSpan = 3;
                                     cell.rowSpan = 2;
-                                    cell.classList.add("combined-yellow");
+                                    cell.classList.remove("hidden-cell");    
+                                    cell.classList.add("bg-image");
+                                    cell.style.backgroundImage ='url("https://lasmatesfaciles.com/wp-content/uploads/2025/03/romano3.png")';
                                 } else if (i >= 6 && i <= 7 && j >= 36 && j <= 38) {
                                     continue;
                                 }
@@ -320,14 +523,18 @@
                                 if (i === 11 && j === 36) {//hexagono
                                     cell.colSpan = 3;
                                     cell.rowSpan = 3;
-                                    cell.classList.add("combined-yellow");
+                                    cell.classList.remove("hidden-cell");    
+                                    cell.classList.add("bg-image");
+                                    cell.style.backgroundImage ='url("https://lasmatesfaciles.com/wp-content/uploads/2025/03/hexagono.png")';
                                 } else if (i >= 11 && i <= 13 && j >= 36 && j <= 38) {
                                     continue;
                                 }
                                 if (i === 12 && j === 43) {//concavo
                                     cell.colSpan = 2;
                                     cell.rowSpan = 3;
-                                    cell.classList.add("combined-yellow");
+                                    cell.classList.remove("hidden-cell");    
+                                    cell.classList.add("bg-image");
+                                    cell.style.backgroundImage ='url("https://lasmatesfaciles.com/wp-content/uploads/2025/03/concavo.png")';
                                 } else if (i >= 12 && i <= 14 && j >= 43 && j <= 44) {
                                     continue;
                                 }
@@ -335,7 +542,9 @@
                                 if (i === 15 && j === 40) {//angulo agudo
                                     cell.colSpan = 3;
                                     cell.rowSpan = 2;
-                                    cell.classList.add("combined-yellow");
+                                    cell.classList.remove("hidden-cell");    
+                                    cell.classList.add("bg-image");
+                                    cell.style.backgroundImage ='url("https://lasmatesfaciles.com/wp-content/uploads/2025/03/agudo.png")';
                                 } else if (i >= 15 && i <= 16 && j >= 40 && j <= 42) {
                                     continue;
                                 }
@@ -343,7 +552,9 @@
                                 if (i === 19 && j === 42) {//cinco en romano
                                     cell.colSpan = 2;
                                     cell.rowSpan = 2;
-                                    cell.classList.add("combined-yellow");
+                                    cell.classList.remove("hidden-cell");    
+                                    cell.classList.add("bg-image");
+                                    cell.style.backgroundImage ='url("https://lasmatesfaciles.com/wp-content/uploads/2025/03/romano5.png")';
                                 } else if (i >= 19 && i <= 20 && j >= 42 && j <= 43) {
                                     continue;
                                 }
@@ -351,238 +562,320 @@
                                 if (i === 15 && j === 29) {//problema de perimetro y area
                                     cell.colSpan = 6;
                                     cell.rowSpan = 6;
-                                    cell.classList.add("combined-yellow");
+                                    cell.classList.remove("hidden-cell");    
+                                    cell.classList.add("bg-image");
+                                    cell.style.backgroundImage ='url("https://lasmatesfaciles.com/wp-content/uploads/2025/03/perimetroarea.png")';
                                 } else if (i >= 15 && i <= 20 && j >= 29 && j <= 34) {
                                     continue;
                                 }
                                 if (i === 20 && j === 35) {//ortoedro
                                     cell.colSpan = 2;
                                     cell.rowSpan = 2;
-                                    cell.classList.add("combined-blue");
+                                    cell.classList.remove("hidden-cell");    
+                                    cell.classList.add("bg-image");
+                                    cell.style.backgroundImage ='url("https://lasmatesfaciles.com/wp-content/uploads/2025/03/ortoedro.png")';
                                 } else if (i >= 20 && i <= 21 && j >= 35 && j <= 36) {
                                     continue;
                                 }
                                 if (i === 22 && j === 33) {//tales de...
                                     cell.colSpan = 4;
                                     cell.rowSpan = 4;
-                                    cell.classList.add("combined-yellow");
+                                    cell.classList.remove("hidden-cell");    
+                                    cell.classList.add("bg-image");
+                                    cell.style.backgroundImage ='url("https://lasmatesfaciles.com/wp-content/uploads/2025/03/tales.png")';
                                 } else if (i >= 22 && i <= 25 && j >= 33 && j <= 36) {
                                     continue;
                                 }
                                 if (i === 23 && j === 42) {//curva
                                     cell.colSpan = 3;
                                     cell.rowSpan = 3;
-                                    cell.classList.add("combined-yellow");
+                                    cell.classList.remove("hidden-cell");    
+                                    cell.classList.add("bg-image");
+                                    cell.style.backgroundImage ='url("https://lasmatesfaciles.com/wp-content/uploads/2025/03/curva.png")';
                                 } else if (i >= 23 && i <= 25 && j >= 42 && j <= 44) {
                                     continue;
                                 }
                                 if (i === 24 && j === 38) {//vertice del cubo
                                     cell.colSpan = 2;
                                     cell.rowSpan = 2;
-                                    cell.classList.add("combined-yellow");
+                                    cell.classList.remove("hidden-cell");    
+                                    /*cell.classList.add("bg-image");
+                                    cell.style.backgroundImage ='url("vertice.png")';
+*/
+                                    let img = document.createElement("img");
+                                    img.src = "https://lasmatesfaciles.com/wp-content/uploads/2025/03/vertice.png"; // URL de la imagen
+                                    img.alt = "vertice de un cubo";
+                                    // Anexar la imagen a la celda
+                                    cell.appendChild(img);
+
                                 } else if (i >= 24 && i <= 25 && j >= 38 && j <= 39) {
                                     continue;
                                 }
                                 if (i === 6 && j === 0) {//triangulos segun sus lados
                                     cell.colSpan = 5;
                                     cell.rowSpan = 3;
-                                    cell.classList.add("combined-yellow");
+                                    cell.classList.remove("hidden-cell");    
+                                    cell.classList.add("bg-image");
+                                    cell.style.backgroundImage ='url("https://lasmatesfaciles.com/wp-content/uploads/2025/03/triangulossegunlados.png")';
                                 } else if (i >= 6 && i <= 8 && j >= 0 && j <= 4) {
                                     continue;
                                 }
                                 if (i === 9 && j === 0) {//cuerda de una circunferencia
                                     cell.colSpan = 2;
                                     cell.rowSpan = 2;
-                                    cell.classList.add("combined-blue");
+                                    cell.classList.remove("hidden-cell");    
+                                    cell.classList.add("bg-image");
+                                    cell.style.backgroundImage ='url("https://lasmatesfaciles.com/wp-content/uploads/2025/03/cuerdacircunferencia.png")';
                                 } else if (i >= 9 && i <= 10 && j >= 0 && j <= 1) {
                                     continue;
                                 }
                                 if (i === 10 && j === 4) {//arco de una circunferencia
                                     cell.colSpan = 2;
                                     cell.rowSpan = 2;
-                                    cell.classList.add("combined-blue");
+                                    cell.classList.remove("hidden-cell");    
+                                    cell.classList.add("bg-image");
+                                    cell.style.backgroundImage ='url("https://lasmatesfaciles.com/wp-content/uploads/2025/03/arcocircunferencia.png")';
                                 } else if (i >= 10 && i <= 11 && j >= 4 && j <= 5) {
                                     continue;
                                 }
                                 if (i === 10 && j === 6) {//escuadra
                                     cell.colSpan = 3;
                                     cell.rowSpan = 2;
-                                    cell.classList.add("combined-yellow");
+                                    cell.classList.remove("hidden-cell");    
+                                    cell.classList.add("bg-image");
+                                    cell.style.backgroundImage ='url("https://lasmatesfaciles.com/wp-content/uploads/2025/03/escuadra.png")';
                                 } else if (i >= 10 && i <= 11 && j >= 6 && j <= 8) {
                                     continue;
                                 }
                                 if (i === 4 && j === 8) {//area del circulo
                                     cell.colSpan = 2;
                                     cell.rowSpan = 3;
-                                    cell.classList.add("combined-yellow");
+                                    cell.classList.remove("hidden-cell");    
+                                    cell.classList.add("bg-image");
+                                    cell.style.backgroundImage ='url("https://lasmatesfaciles.com/wp-content/uploads/2025/03/areacirculo.png")';
                                 } else if (i >= 4 && i <= 6 && j >= 8 && j <= 9) {
                                     continue;
                                 }
                                 if (i === 12 && j === 9) {//cubito
                                     cell.colSpan = 2;
                                     cell.rowSpan = 2;
-                                    cell.classList.add("combined-yellow");
+                                    cell.classList.remove("hidden-cell");    
+                                    cell.classList.add("bg-image");
+                                    cell.style.backgroundImage ='url("https://lasmatesfaciles.com/wp-content/uploads/2025/03/ortoedro.png")';
                                 } else if (i >= 12 && i <= 13 && j >= 9 && j <= 10) {
                                     continue;
                                 }
                                 if (i === 8 && j === 11) {//tangram
                                     cell.colSpan = 3;
                                     cell.rowSpan = 3;
-                                    cell.classList.add("combined-yellow");
+                                    cell.classList.remove("hidden-cell");    
+                                    cell.classList.add("bg-image");
+                                    cell.style.backgroundImage ='url("https://lasmatesfaciles.com/wp-content/uploads/2025/03/tangram.png")';
                                 } else if (i >= 8 && i <= 10 && j >= 11 && j <= 13) {
                                     continue;
                                 }
                                 if (i === 11 && j === 11) {//complemento de 76 grados
                                     cell.colSpan = 4;
                                     cell.rowSpan = 2;
-                                    cell.classList.add("combined-blue");
+                                    cell.classList.remove("hidden-cell");    
+                                    cell.classList.add("bg-image");
+                                    cell.style.backgroundImage ='url("https://lasmatesfaciles.com/wp-content/uploads/2025/03/complementode76.png")';
                                 } else if (i >= 11 && i <= 12 && j >= 11 && j <= 14) {
                                     continue;
                                 }
-                                if (i === 5 && j === 15) {//radio de la circunferencia
-                                    cell.colSpan = 2;
+                                if (i === 5 && j === 14) {//radio de la circunferencia
+                                    cell.colSpan = 3;
                                     cell.rowSpan = 3;
-                                    cell.classList.add("combined-blue");
-                                } else if (i >= 5 && i <= 7 && j >= 15 && j <= 16) {
+                                    cell.classList.remove("hidden-cell");    
+                                    cell.classList.add("bg-image");
+                                    cell.style.backgroundImage ='url("https://lasmatesfaciles.com/wp-content/uploads/2025/03/radio.png")';
+                                } else if (i >= 5 && i <= 7 && j >= 14 && j <= 16) {
                                     continue;
                                 }
                                 if (i === 12 && j === 5) {//compas
                                     cell.colSpan = 2;
                                     cell.rowSpan = 3;
-                                    cell.classList.add("combined-blue");
+                                    cell.classList.remove("hidden-cell");    
+                                    cell.classList.add("bg-image");
+                                    cell.style.backgroundImage ='url("https://lasmatesfaciles.com/wp-content/uploads/2025/03/compas.png")';
                                 } else if (i >= 12 && i <= 14 && j >= 5 && j <= 6) {
                                     continue;
                                 }
                                 if (i === 13 && j === 2) {//triangulo equilatero
                                     cell.colSpan = 3;
                                     cell.rowSpan = 4;
-                                    cell.classList.add("combined-yellow");
+                                    cell.classList.remove("hidden-cell");    
+                                    cell.classList.add("bg-image");
+                                    cell.style.backgroundImage ='url("https://lasmatesfaciles.com/wp-content/uploads/2025/03/triequilatero.png")';
                                 } else if (i >= 13 && i <= 16 && j >= 2 && j <= 4) {
                                     continue;
                                 }
                                 if (i === 17 && j === 1) {//mil romano
                                     cell.colSpan = 2;
                                     cell.rowSpan = 3;
-                                    cell.classList.add("combined-blue");
+                                    cell.classList.remove("hidden-cell");    
+                                    cell.classList.add("bg-image");
+                                    cell.style.backgroundImage ='url("https://lasmatesfaciles.com/wp-content/uploads/2025/03/romano1000.png")';
                                 } else if (i >= 17 && i <= 19 && j >= 1 && j <= 2) {
                                     continue;
                                 }
                                 if (i === 17 && j === 3) {//paralelepipedo
                                     cell.colSpan = 3;
                                     cell.rowSpan = 3;
-                                    cell.classList.add("combined-yellow");
+                                    cell.classList.remove("hidden-cell");    
+                                    cell.classList.add("bg-image");
+                                    cell.style.backgroundImage ='url("https://lasmatesfaciles.com/wp-content/uploads/2025/03/paralelepipedo.png")';
                                 } else if (i >= 17 && i <= 19 && j >= 3 && j <= 5) {
                                     continue;
                                 }
                                 if (i === 16 && j === 8) {//prisma
                                     cell.colSpan = 2;
                                     cell.rowSpan = 3;
-                                    cell.classList.add("combined-yellow");
+                                    cell.classList.remove("hidden-cell");    
+                                    cell.classList.add("bg-image");
+                                    cell.style.backgroundImage ='url("https://lasmatesfaciles.com/wp-content/uploads/2025/03/prisma.png")';
                                 } else if (i >= 16 && i <= 18 && j >= 8 && j <= 9) {
                                     continue;
                                 }
                                 if (i === 22 && j === 0) {//homotecia
                                     cell.colSpan = 5;
                                     cell.rowSpan = 4;
-                                    cell.classList.add("combined-yellow");
+                                    cell.classList.remove("hidden-cell");    
+                                    cell.classList.add("bg-image");
+                                    cell.style.backgroundImage ='url("https://lasmatesfaciles.com/wp-content/uploads/2025/03/homotecia.png")';
                                 } else if (i >= 22 && i <= 25 && j >= 0 && j <= 4) {
                                     continue;
                                 }
                                 if (i === 20 && j === 5) {//angulo de 90 grados
                                     cell.colSpan = 3;
                                     cell.rowSpan = 3;
-                                    cell.classList.add("combined-blue");
+                                    cell.classList.remove("hidden-cell");    
+                                    cell.classList.add("bg-image");
+                                    cell.style.backgroundImage ='url("https://lasmatesfaciles.com/wp-content/uploads/2025/03/angulode90.png")';
                                 } else if (i >= 20 && i <= 22 && j >= 5 && j <= 7) {
                                     continue;
                                 }
                                 if (i === 21 && j === 8) {//esfera
                                     cell.colSpan = 2;
                                     cell.rowSpan = 2;
-                                    cell.classList.add("combined-yellow");
+                                    cell.classList.remove("hidden-cell");    
+                                    cell.classList.add("bg-image");
+                                    cell.style.backgroundImage ='url("https://lasmatesfaciles.com/wp-content/uploads/2025/03/esfera.png")';
                                 } else if (i >= 21 && i <= 22 && j >= 8 && j <= 9) {
                                     continue;
                                 }
                                 if (i === 23 && j === 7) {//angulos complementarios
                                     cell.colSpan = 4;
                                     cell.rowSpan = 3;
-                                    cell.classList.add("combined-blue");
+                                    cell.classList.remove("hidden-cell");    
+                                    cell.classList.add("bg-image");
+                                    cell.style.backgroundImage ='url("https://lasmatesfaciles.com/wp-content/uploads/2025/03/complementarios.png")';
                                 } else if (i >= 23 && i <= 25 && j >= 7 && j <= 10) {
                                     continue;
                                 }
                                 if (i === 13 && j === 16) {//trapecio
                                     cell.colSpan = 3;
                                     cell.rowSpan = 2;
-                                    cell.classList.add("combined-blue");
+                                    cell.classList.remove("hidden-cell");    
+                                    cell.classList.add("bg-image");
+                                    cell.style.backgroundImage ='url("https://lasmatesfaciles.com/wp-content/uploads/2025/03/trapecio.png")';
                                 } else if (i >= 13 && i <= 14 && j >= 16 && j <= 18) {
                                     continue;
                                 }
                                 if (i === 15 && j === 15) {//arista del cubo
                                     cell.colSpan = 2;
                                     cell.rowSpan = 2;
-                                    cell.classList.add("combined-yellow");
+                                    cell.classList.remove("hidden-cell");    
+                                    cell.classList.add("bg-image");
+                                    cell.style.backgroundImage ='url("https://lasmatesfaciles.com/wp-content/uploads/2025/03/aristacubo.png")';
                                 } else if (i >= 15 && i <= 16 && j >= 15 && j <= 16) {
                                     continue;
                                 }
                                 if (i === 12 && j === 20) {//plano
                                     cell.colSpan = 2;
                                     cell.rowSpan = 3;
-                                    cell.classList.add("combined-yellow");
+                                    cell.classList.remove("hidden-cell");    
+                                    cell.classList.add("bg-image");
+                                    cell.style.backgroundImage ='url("https://lasmatesfaciles.com/wp-content/uploads/2025/03/plano.png")';
                                 } else if (i >= 12 && i <= 14 && j >= 20 && j <= 21) {
                                     continue;
                                 }
                                 if (i === 12 && j === 22) {//poligonos
                                     cell.colSpan = 4;
                                     cell.rowSpan = 3;
-                                    cell.classList.add("combined-blue");
+                                    cell.classList.remove("hidden-cell");    
+                                    cell.classList.add("bg-image");
+                                    cell.style.backgroundImage ='url("https://lasmatesfaciles.com/wp-content/uploads/2025/03/poligonos.png")';
                                 } else if (i >= 12 && i <= 14 && j >= 22 && j <= 25) {
                                     continue;
                                 }
                                 if (i === 15 && j === 22) {//circulo inscrito
                                     cell.colSpan = 3;
                                     cell.rowSpan = 3;
-                                    cell.classList.add("combined-yellow");
+                                    cell.classList.remove("hidden-cell");    
+                                    cell.classList.add("bg-image");
+                                    cell.style.backgroundImage ='url("https://lasmatesfaciles.com/wp-content/uploads/2025/03/inscrito.png")';
                                 } else if (i >= 15 && i <= 17 && j >= 22 && j <= 24) {
                                     continue;
                                 }
                                 if (i === 15 && j === 25) {//recta
                                     cell.colSpan = 3;
                                     cell.rowSpan = 2;
-                                    cell.classList.add("combined-blue");
+                                    cell.classList.remove("hidden-cell");    
+                                    cell.classList.add("bg-image");
+                                    cell.style.backgroundImage ='url("https://lasmatesfaciles.com/wp-content/uploads/2025/03/recta.png")';
                                 } else if (i >= 15 && i <= 16 && j >= 25 && j <= 27) {
                                     continue;
                                 }
                                 if (i === 19 && j === 21) {//plano cartesiano
                                     cell.colSpan = 3;
                                     cell.rowSpan = 3;
-                                    cell.classList.add("combined-blue");
+                                    cell.classList.remove("hidden-cell");    
+                                    cell.classList.add("bg-image");
+                                    cell.style.backgroundImage ='url("https://lasmatesfaciles.com/wp-content/uploads/2025/03/cartesiano.png")';
                                 } else if (i >= 19 && i <= 21 && j >= 21 && j <= 23) {
                                     continue;
                                 }
                                 if (i === 20 && j === 18) {//angulo obtuso
                                     cell.colSpan = 3;
                                     cell.rowSpan = 2;
-                                    cell.classList.add("combined-yellow");
+                                    cell.classList.remove("hidden-cell");    
+                                    cell.classList.add("bg-image");
+                                    cell.style.backgroundImage ='url("https://lasmatesfaciles.com/wp-content/uploads/2025/03/obtuso.png")';
                                 } else if (i >= 20 && i <= 21 && j >= 18 && j <= 20) {
                                     continue;
                                 }
                                 if (i === 23 && j === 14) {//50 romano
                                     cell.colSpan = 2;
                                     cell.rowSpan = 2;
-                                    cell.classList.add("combined-yellow");
+                                    cell.classList.remove("hidden-cell");    
+                                    /*cell.classList.add("bg-image");
+                                    cell.style.backgroundImage ='url("romano50.png")';
+*/
+                                    let img = document.createElement("img");
+                                    img.src = "https://lasmatesfaciles.com/wp-content/uploads/2025/03/romano50.png"; // URL de la imagen
+                                    img.alt = "50 en romano";
+                                    // Anexar la imagen a la celda
+                                    cell.appendChild(img);
+
                                 } else if (i >= 23 && i <= 24 && j >= 14 && j <= 15) {
                                     continue;
                                 }
                                 if (i === 22 && j === 19) {//cuantos cubitos le faltan al cubote
                                     cell.colSpan = 5;
                                     cell.rowSpan = 3;
-                                    cell.classList.add("combined-yellow");
+                                    cell.classList.remove("hidden-cell");    
+                                    cell.classList.add("bg-image");
+                                    cell.style.backgroundImage ='url("https://lasmatesfaciles.com/wp-content/uploads/2025/03/cubitos.png")';
                                 } else if (i >= 22 && i <= 24 && j >= 19 && j <= 23) {
                                     continue;
                                 }
                                 if (i === 22 && j === 25) {//cubo rubik
                                     cell.colSpan = 2;
                                     cell.rowSpan = 2;
-                                    cell.classList.add("combined-yellow");
+                                    cell.classList.remove("hidden-cell");    
+                                    cell.classList.add("bg-image");
+                                    cell.style.backgroundImage ='url("https://lasmatesfaciles.com/wp-content/uploads/2025/03/rubik.png")';
                                 } else if (i >= 22 && i <= 23 && j >= 25 && j <= 26) {
                                     continue;
                                 }
@@ -765,7 +1058,193 @@
                                (fila === 15 && columna === 1 && input.value === "D")||
                                (fila === 16 && columna === 1 && input.value === "A")||
                                (fila === 11 && columna === 2 && input.value === "R")||
-                               (fila === 11 && columna === 3 && input.value === "A")
+                               (fila === 11 && columna === 3 && input.value === "A")||
+                               (fila === 20 && columna === 1 && input.value === "T")||
+                               (fila === 20 && columna === 2 && input.value === "C")||
+                               (fila === 20 && columna === 3 && input.value === "E")||
+                               (fila === 20 && columna === 4 && input.value === "R")||
+                               (fila === 9 && columna === 4 && input.value === "M")||
+                               (fila === 9 && columna === 5 && input.value === "A")||
+                               (fila === 9 && columna === 6 && input.value === "R")||
+                               (fila === 9 && columna === 7 && input.value === "G")||
+                               (fila === 9 && columna === 8 && input.value === "N")||
+                               (fila === 9 && columna === 9 && input.value === "A")||
+                               (fila === 15 && columna === 5 && input.value === "E")||
+                               (fila === 15 && columna === 6 && input.value === "Q")||
+                               (fila === 15 && columna === 7 && input.value === "U")||
+                               (fila === 15 && columna === 8 && input.value === "I")||
+                               (fila === 15 && columna === 9 && input.value === "L")||
+                               (fila === 15 && columna === 10 && input.value === "A")||
+                               (fila === 15 && columna === 11 && input.value === "T")||
+                               (fila === 15 && columna === 12 && input.value === "E")||
+                               (fila === 15 && columna === 13 && input.value === "R")||
+                               (fila === 15 && columna === 14 && input.value === "O")||
+                               (fila === 19 && columna === 6 && input.value === "P")||
+                               (fila === 19 && columna === 7 && input.value === "A")||
+                               (fila === 19 && columna === 8 && input.value === "R")||
+                               (fila === 19 && columna === 9 && input.value === "A")||
+                               (fila === 19 && columna === 10 && input.value === "L")||
+                               (fila === 19 && columna === 11 && input.value === "E")||
+                               (fila === 19 && columna === 12 && input.value === "L")||
+                               (fila === 19 && columna === 13 && input.value === "E")||
+                               (fila === 19 && columna === 14 && input.value === "P")||
+                               (fila === 19 && columna === 15 && input.value === "I")||
+                               (fila === 19 && columna === 16 && input.value === "P")||
+                               (fila === 19 && columna === 17 && input.value === "E")||
+                               (fila === 19 && columna === 18 && input.value === "D")||
+                               (fila === 19 && columna === 19 && input.value === "O")||
+                               (fila === 17 && columna === 10 && input.value === "P")||
+                               (fila === 17 && columna === 11 && input.value === "R")||
+                               (fila === 17 && columna === 12 && input.value === "I")||
+                               (fila === 17 && columna === 13 && input.value === "S")||
+                               (fila === 17 && columna === 14 && input.value === "M")||
+                               (fila === 17 && columna === 15 && input.value === "A")||
+                               (fila === 13 && columna === 11 && input.value === "C")||
+                               (fila === 13 && columna === 12 && input.value === "U")||
+                               (fila === 13 && columna === 13 && input.value === "B")||
+                               (fila === 13 && columna === 14 && input.value === "O")||
+                               (fila === 14 && columna === 7 && input.value === "C")||
+                               (fila === 14 && columna === 8 && input.value === "O")||
+                               (fila === 14 && columna === 9 && input.value === "M")||
+                               (fila === 14 && columna === 10 && input.value === "P")||
+                               (fila === 14 && columna === 11 && input.value === "A")||
+                               (fila === 14 && columna === 12 && input.value === "S")||
+                               (fila === 12 && columna === 7 && input.value === "E")||
+                               (fila === 13 && columna === 7 && input.value === "S")||
+                               (fila === 22 && columna === 10 && input.value === "E")||
+                               (fila === 22 && columna === 11 && input.value === "S")||
+                               (fila === 22 && columna === 12 && input.value === "F")||
+                               (fila === 22 && columna === 13 && input.value === "E")||
+                               (fila === 22 && columna === 14 && input.value === "R")||
+                               (fila === 22 && columna === 15 && input.value === "A")||
+                               (fila === 6 && columna === 39 && input.value === "C")||
+                               (fila === 7 && columna === 39 && input.value === "I")||
+                               (fila === 9 && columna === 39 && input.value === "C")||
+                               (fila === 10 && columna === 39 && input.value === "U")||
+                               (fila === 11 && columna === 39 && input.value === "N")||
+                               (fila === 12 && columna === 39 && input.value === "F")||
+                               (fila === 13 && columna === 39 && input.value === "E")||
+                               (fila === 14 && columna === 39 && input.value === "R")||
+                               (fila === 15 && columna === 39 && input.value === "E")||
+                               (fila === 16 && columna === 39 && input.value === "N")||
+                               (fila === 17 && columna === 39 && input.value === "C")||
+                               (fila === 18 && columna === 39 && input.value === "I")||
+                               (fila === 19 && columna === 39 && input.value === "A")||
+                               (fila === 9 && columna === 34 && input.value === "G")||
+                               (fila === 15 && columna === 35 && input.value === "N")||
+                               (fila === 15 && columna === 36 && input.value === "U")||
+                               (fila === 15 && columna === 37 && input.value === "E")||
+                               (fila === 15 && columna === 38 && input.value === "V")||
+                               (fila === 13 && columna === 29 && input.value === "I")||
+                               (fila === 13 && columna === 30 && input.value === "G")||
+                               (fila === 13 && columna === 31 && input.value === "O")||
+                               (fila === 13 && columna === 32 && input.value === "N")||
+                               (fila === 13 && columna === 33 && input.value === "O")||
+                               (fila === 13 && columna === 34 && input.value === "S")||
+                               (fila === 10 && columna === 33 && input.value === "C")||
+                               (fila === 10 && columna === 34 && input.value === "O")||
+                               (fila === 10 && columna === 35 && input.value === "N")||
+                               (fila === 10 && columna === 36 && input.value === "O")||
+                               (fila === 11 && columna === 34 && input.value === "R")||
+                               (fila === 12 && columna === 34 && input.value === "A")||
+                               (fila === 23 && columna === 37 && input.value === "A")||
+                               (fila === 23 && columna === 38 && input.value === "V")||
+                               (fila === 23 && columna === 39 && input.value === "R")||
+                               (fila === 23 && columna === 40 && input.value === "U")||
+                               (fila === 23 && columna === 41 && input.value === "C")||
+                               (fila === 14 && columna === 37 && input.value === "H")||
+                               (fila === 21 && columna === 37 && input.value === "O")||
+                               (fila === 21 && columna === 38 && input.value === "R")||
+                               (fila === 21 && columna === 39 && input.value === "T")||
+                               (fila === 21 && columna === 40 && input.value === "O")||
+                               (fila === 21 && columna === 41 && input.value === "E")||
+                               (fila === 21 && columna === 42 && input.value === "D")||
+                               (fila === 21 && columna === 43 && input.value === "R")||
+                               (fila === 21 && columna === 44 && input.value === "O")||
+                               (fila === 15 && columna === 44 && input.value === "C")||
+                               (fila === 16 && columna === 44 && input.value === "O")||
+                               (fila === 17 && columna === 44 && input.value === "N")||
+                               (fila === 18 && columna === 44 && input.value === "C")||
+                               (fila === 19 && columna === 44 && input.value === "A")||
+                               (fila === 20 && columna === 44 && input.value === "V")||
+                               (fila === 17 && columna === 40 && input.value === "A")||
+                               (fila === 18 && columna === 40 && input.value === "G")||
+                               (fila === 19 && columna === 40 && input.value === "U")||
+                               (fila === 20 && columna === 40 && input.value === "D")||
+                               (fila === 17 && columna === 38 && input.value === "E")||
+                               (fila === 18 && columna === 38 && input.value === "C")||
+                               (fila === 19 && columna === 38 && input.value === "I")||
+                               (fila === 20 && columna === 38 && input.value === "T")||
+                               (fila === 16 && columna === 37 && input.value === "X")||
+                               (fila === 17 && columna === 37 && input.value === "A")||
+                               (fila === 18 && columna === 37 && input.value === "G")||
+                               (fila === 19 && columna === 37 && input.value === "O")||
+                               (fila === 20 && columna === 37 && input.value === "N")||
+                               (fila === 22 && columna === 38 && input.value === "E")||
+                               (fila === 21 && columna === 24 && input.value === "C")||
+                               (fila === 21 && columna === 25 && input.value === "A")||
+                               (fila === 21 && columna === 26 && input.value === "R")||
+                               (fila === 21 && columna === 27 && input.value === "T")||
+                               (fila === 21 && columna === 28 && input.value === "E")||
+                               (fila === 21 && columna === 29 && input.value === "S")||
+                               (fila === 21 && columna === 30 && input.value === "I")||
+                               (fila === 21 && columna === 31 && input.value === "A")||
+                               (fila === 21 && columna === 32 && input.value === "N")||
+                               (fila === 21 && columna === 33 && input.value === "O")||
+                               (fila === 23 && columna === 27 && input.value === "O")||
+                               (fila === 23 && columna === 28 && input.value === "T")||
+                               (fila === 23 && columna === 29 && input.value === "E")||
+                               (fila === 23 && columna === 30 && input.value === "L")||
+                               (fila === 23 && columna === 31 && input.value === "I")||
+                               (fila === 23 && columna === 32 && input.value === "M")||
+                               (fila === 10 && columna === 29 && input.value === "O")||
+                               (fila === 11 && columna === 29 && input.value === "C")||
+                               (fila === 12 && columna === 29 && input.value === "N")||
+                               (fila === 14 && columna === 29 && input.value === "C")||
+                               (fila === 17 && columna === 26 && input.value === "K")||
+                               (fila === 18 && columna === 26 && input.value === "I")||
+                               (fila === 19 && columna === 26 && input.value === "B")||
+                               (fila === 20 && columna === 26 && input.value === "U")||
+                               (fila === 17 && columna === 25 && input.value === "R")||
+                               (fila === 18 && columna === 25 && input.value === "E")||
+                               (fila === 19 && columna === 25 && input.value === "C")||
+                               (fila === 20 && columna === 25 && input.value === "T")||
+                               (fila === 18 && columna === 24 && input.value === "I")||
+                               (fila === 19 && columna === 24 && input.value === "N")||
+                               (fila === 20 && columna === 24 && input.value === "S")||
+                               (fila === 22 && columna === 24 && input.value === "R")||
+                               (fila === 23 && columna === 24 && input.value === "I")||
+                               (fila === 24 && columna === 24 && input.value === "T")||
+                               (fila === 24 && columna === 25 && input.value === "R")||
+                               (fila === 24 && columna === 26 && input.value === "E")||
+                               (fila === 24 && columna === 27 && input.value === "I")||
+                               (fila === 24 && columna === 28 && input.value === "N")||
+                               (fila === 24 && columna === 29 && input.value === "T")||
+                               (fila === 24 && columna === 30 && input.value === "A")||
+                               (fila === 22 && columna === 29 && input.value === "I")||
+                               (fila === 25 && columna === 29 && input.value === "E")||
+                               (fila === 14 && columna === 19 && input.value === "O")||
+                               (fila === 15 && columna === 19 && input.value === "S")||
+                               (fila === 16 && columna === 19 && input.value === "U")||
+                               (fila === 17 && columna === 19 && input.value === "T")||
+                               (fila === 18 && columna === 19 && input.value === "B")||
+                               (fila === 16 && columna === 7 && input.value === "A")||
+                               (fila === 17 && columna === 7 && input.value === "D")||
+                               (fila === 18 && columna === 7 && input.value === "R")||
+                               (fila === 16 && columna === 11 && input.value === "O")||
+                               (fila === 18 && columna === 11 && input.value === "C")||
+                               (fila === 15 && columna === 17 && input.value === "T")||
+                               (fila === 16 && columna === 17 && input.value === "R")||
+                               (fila === 17 && columna === 17 && input.value === "A")||
+                               (fila === 18 && columna === 17 && input.value === "P")||
+                               (fila === 18 && columna === 15 && input.value === "R")||
+                               (fila === 20 && columna === 15 && input.value === "S")||
+                               (fila === 21 && columna === 15 && input.value === "T")||
+                               (fila === 20 && columna === 17 && input.value === "C")||
+                               (fila === 21 && columna === 17 && input.value === "I")||
+                               (fila === 22 && columna === 17 && input.value === "O")
+
+
 
 
 
